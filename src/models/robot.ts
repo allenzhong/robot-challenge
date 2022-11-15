@@ -32,4 +32,55 @@ export default class Robot {
   public get orientation(): Orientation {
     return this._orientation;
   }
+
+  public move() {
+    switch (this._orientation) {
+      case Orientation.NORTH:
+        this._position.y++;
+        break;
+      case Orientation.EAST:
+        this._position.x++;
+        break;
+      case Orientation.SOUTH:
+        this._position.y--;
+        break;
+      case Orientation.WEST:
+        this._position.x--;
+        break;
+    }
+  }
+
+  public turnLeft() {
+    switch (this._orientation) {
+      case Orientation.NORTH:
+        this._orientation = Orientation.WEST;
+        break;
+      case Orientation.EAST:
+        this._orientation = Orientation.NORTH;
+        break;
+      case Orientation.SOUTH:
+        this._orientation = Orientation.EAST;
+        break;
+      case Orientation.WEST:
+        this._orientation = Orientation.SOUTH;
+        break;
+    }
+  }
+
+  public turnRight() {
+    switch (this._orientation) {
+      case Orientation.NORTH:
+        this._orientation = Orientation.EAST;
+        break;
+      case Orientation.EAST:
+        this._orientation = Orientation.SOUTH;
+        break;
+      case Orientation.SOUTH:
+        this._orientation = Orientation.WEST;
+        break;
+      case Orientation.WEST:
+        this._orientation = Orientation.NORTH;
+        break;
+    }
+  }
 }
