@@ -4,6 +4,8 @@ import Robot, { Orientation } from './robot';
 export default class TableTop {
   private _robot: Robot | undefined;
 
+  constructor(private _width: number = 5, private _height: number = 5) {}
+
   public placeRobot(x: number, y: number, orientation: Orientation) {
     this._robot = new Robot(new Position(x, y), orientation);
   }
@@ -36,5 +38,9 @@ export default class TableTop {
     if (this._robot) {
       this._robot.turnRight();
     }
+  }
+
+  public isPositionValid(x: number, y: number) {
+    return x >= 0 && x < this._width && y >= 0 && y < this._height;
   }
 }
