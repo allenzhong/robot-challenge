@@ -24,7 +24,7 @@ export default class TableTop {
 
   public moveRobot() {
     if (!this._robot) return;
-    
+
     const nextMove = this._robot.predictNextMove();
     if (this.isPositionValid(nextMove.x, nextMove.y)) {
       this._robot.move();
