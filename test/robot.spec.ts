@@ -125,4 +125,42 @@ describe('Robot', () => {
       expect(robot.orientation).toBe(Orientation.NORTH);
     });
   });
+
+  describe('prediectNextMove', () => {
+    it('when facing north', () => {
+      const robot = new Robot(new Position(0, 0), Orientation.NORTH);
+      const position = robot.predictNextMove();
+
+      expect(position.x).toBe(0);
+      expect(position.y).toBe(1);
+      expect(robot.orientation).toBe(Orientation.NORTH);
+    });
+
+    it('when facing east', () => {
+      const robot = new Robot(new Position(0, 0), Orientation.EAST);
+      const position = robot.predictNextMove();
+
+      expect(position.x).toBe(1);
+      expect(position.y).toBe(0);
+      expect(robot.orientation).toBe(Orientation.EAST);
+    });
+
+    it('when facing south', () => {
+      const robot = new Robot(new Position(1, 1), Orientation.SOUTH);
+      const position = robot.predictNextMove();
+
+      expect(position.x).toBe(1);
+      expect(position.y).toBe(0);
+      expect(robot.orientation).toBe(Orientation.SOUTH);
+    });
+
+    it('when facing west', () => {
+      const robot = new Robot(new Position(1, 1), Orientation.WEST);
+      const position = robot.predictNextMove();
+
+      expect(position.x).toBe(0);
+      expect(position.y).toBe(1);
+      expect(robot.orientation).toBe(Orientation.WEST);
+    });
+  });
 });

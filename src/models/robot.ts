@@ -50,6 +50,25 @@ export default class Robot {
     }
   }
 
+  public predictNextMove(): Position { 
+    const position = new Position(this._position.x, this._position.y);
+    switch (this._orientation) {
+      case Orientation.NORTH:
+        position.y++;
+        break;
+      case Orientation.EAST:
+        position.x++;
+        break;
+      case Orientation.SOUTH:
+        position.y--;
+        break;
+      case Orientation.WEST:
+        position.x--;
+        break;
+    }
+    return position;
+  }
+
   public turnLeft() {
     switch (this._orientation) {
       case Orientation.NORTH:
