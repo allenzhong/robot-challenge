@@ -3,6 +3,7 @@ import TableTop from '../src/models/table-top';
 
 describe('Table top', () => {
   describe('robot', () => {
+    //TODO: edge cases 1: test place on the right position
     it('should be able to place a robot on the table top', () => {
       const tableTop = new TableTop();
       tableTop.placeRobot(0, 0, Orientation.NORTH);

@@ -1,11 +1,9 @@
 import * as readline from 'node:readline';
-import TableTop from './models/table-top';
 import Parser from './parser';
 
 function main() {
   console.log('starting robot challenge');
-  const tableTop = new TableTop();
-  const parser = new Parser(tableTop);
+  const parser = new Parser();
 
   const rl = readline.createInterface({
     input: process.stdin,

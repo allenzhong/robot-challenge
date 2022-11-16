@@ -4,8 +4,8 @@ import TableTop from './models/table-top';
 export default class Parser {
   private _tableTop: TableTop;
 
-  constructor(tableTop: TableTop) {
-    this._tableTop = tableTop;
+  constructor() {
+    this._tableTop = new TableTop();
   }
 
   public parse(input: string) {
