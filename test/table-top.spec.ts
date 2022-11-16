@@ -37,6 +37,38 @@ describe('Table top', () => {
     });
   });
 
+  describe('move', () => {
+    describe('should not be able to move a robot off the table top', () => {
+      it('when facing north', () => {
+        const tableTop = new TableTop();
+        tableTop.placeRobot(0, 4, Orientation.NORTH);
+        tableTop.moveRobot();
+        expect(tableTop.report()).toBe('Output: 0,4,NORTH');
+      });
+
+      it('when facing south', () => {
+        const tableTop = new TableTop();
+        tableTop.placeRobot(0, 0, Orientation.SOUTH);
+        tableTop.moveRobot();
+        expect(tableTop.report()).toBe('Output: 0,0,SOUTH');
+      });
+
+      it('when facing east', () => {
+        const tableTop = new TableTop();
+        tableTop.placeRobot(4, 0, Orientation.EAST);
+        tableTop.moveRobot();
+        expect(tableTop.report()).toBe('Output: 4,0,EAST');
+      });
+
+      it('when facing west', () => {
+        const tableTop = new TableTop();
+        tableTop.placeRobot(0, 0, Orientation.WEST);
+        tableTop.moveRobot();
+        expect(tableTop.report()).toBe('Output: 0,0,WEST');
+      });
+    });
+  });
+
   describe('isPositionValid', () => {
     it('should return true when position(0, 0) is valid', () => {
       const tableTop = new TableTop(5, 5);
