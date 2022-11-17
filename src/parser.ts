@@ -1,3 +1,4 @@
+import { Command } from './models/command';
 import { Orientation } from './models/robot';
 import TableTop from './models/table-top';
 
@@ -11,19 +12,19 @@ export default class Parser {
   public parse(input: string) {
     const [command, ...args] = input.split(' ');
     switch (command) {
-      case 'PLACE':
+      case Command.PLACE:
         this._placeRobot(args[0]);
         break;
-      case 'MOVE':
+      case Command.MOVE:
         this._moveRobot();
         break;
-      case 'LEFT':
+      case Command.LEFT:
         this._turnRobotLeft();
         break;
-      case 'RIGHT':
+      case Command.RIGHT:
         this._turnRobotRight();
         break;
-      case 'REPORT':
+      case Command.REPORT:
         console.log(this._tableTop.report());
         break;
       default:
@@ -31,7 +32,7 @@ export default class Parser {
     }
   }
 
-  private _placeRobot(args: string) { 
+  private _placeRobot(args: string) {
     const [x, y, orientation] = args.split(',');
     if (this._tableTop.isPositionValid(Number(x), Number(y))) {
       this._tableTop.placeRobot(
