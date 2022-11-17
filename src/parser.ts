@@ -4,8 +4,8 @@ import TableTop from './models/table-top';
 export default class Parser {
   private _tableTop: TableTop;
 
-  constructor() {
-    this._tableTop = new TableTop();
+  constructor(tableTop: TableTop) {
+    this._tableTop = tableTop;
   }
 
   public parse(input: string) {
@@ -31,7 +31,7 @@ export default class Parser {
     }
   }
 
-  private _placeRobot(args: string) {
+  private _placeRobot(args: string) { 
     const [x, y, orientation] = args.split(',');
     if (this._tableTop.isPositionValid(Number(x), Number(y))) {
       this._tableTop.placeRobot(
