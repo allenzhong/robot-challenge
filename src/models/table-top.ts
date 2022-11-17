@@ -1,3 +1,4 @@
+import InvalidPositionError from '../errors/invalid-position';
 import Position from './position';
 import Robot, { Orientation } from './robot';
 
@@ -7,6 +8,10 @@ export default class TableTop {
   constructor(private _width: number = 5, private _height: number = 5) {}
 
   public placeRobot(x: number, y: number, orientation: Orientation) {
+    if (!this.isPositionValid(x, y)) {
+      throw new InvalidPositionError('Robot placed on an invalid position.');
+    }
+  
     this._robot = new Robot(new Position(x, y), orientation);
   }
 

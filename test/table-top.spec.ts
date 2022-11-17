@@ -2,27 +2,36 @@ import { Orientation } from '../src/models/robot';
 import TableTop from '../src/models/table-top';
 
 describe('Table top', () => {
-  describe('robot', () => {
-    //TODO: edge cases 1: test place on the right position
+  describe('placeRobot', () => {
     it('should be able to place a robot on the table top', () => {
       const tableTop = new TableTop();
       tableTop.placeRobot(0, 0, Orientation.NORTH);
       expect(tableTop.robot).not.toBeUndefined();
     });
 
+    it('should be able to place a robot on the table top', () => {
+      const tableTop = new TableTop();
+      tableTop.placeRobot(0, 0, Orientation.NORTH);
+      expect(tableTop.robot).not.toBeUndefined();
+    });
+
+    it('should throw an error if the position is invalid', () => {
+      const tableTop = new TableTop();
+      expect(() => tableTop.placeRobot(5, 5, Orientation.NORTH)).toThrow(
+        'Robot placed on an invalid position.',
+      );
+      expect(tableTop.robot).toBeUndefined();
+    });
+  });
+  describe('report', () => {
     it('should be able to report the position of a robot on the table top', () => {
       const tableTop = new TableTop();
       tableTop.placeRobot(0, 0, Orientation.NORTH);
       expect(tableTop.report()).toBe('Output: 0,0,NORTH');
     });
+  });
 
-    it('should be able to move a robot on the table top', () => {
-      const tableTop = new TableTop();
-      tableTop.placeRobot(0, 0, Orientation.NORTH);
-      tableTop.moveRobot();
-      expect(tableTop.report()).toBe('Output: 0,1,NORTH');
-    });
-
+  describe('turn left and right', () => {
     it('should be able to turn left a robot on the table top', () => {
       const tableTop = new TableTop();
       tableTop.placeRobot(0, 0, Orientation.NORTH);
@@ -39,6 +48,13 @@ describe('Table top', () => {
   });
 
   describe('move', () => {
+    it('should be able to move a robot on the table top', () => {
+      const tableTop = new TableTop();
+      tableTop.placeRobot(0, 0, Orientation.NORTH);
+      tableTop.moveRobot();
+      expect(tableTop.report()).toBe('Output: 0,1,NORTH');
+    });
+
     describe('should not be able to move a robot off the table top', () => {
       it('when facing north', () => {
         const tableTop = new TableTop();

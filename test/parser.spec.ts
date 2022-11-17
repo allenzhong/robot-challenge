@@ -1,6 +1,5 @@
 import Parser from '../src/parser';
 import TableTop from '../src/models/table-top';
-import InvalidArgumentError from '../src/errors/invalid-command-error';
 jest.mock('../src/models/table-top');
 
 const TableTopMock = TableTop as jest.MockedClass<typeof TableTop>;
@@ -27,6 +26,7 @@ describe('Parse', () => {
         expect(tableTop.placeRobot).not.toBeCalled();
       });
 
+      //TODO: use output module to test instead
       it('throw error when position args(not number) are invalid', () => {
         jest.spyOn(tableTop, 'isPositionValid').mockReturnValue(true);
         const parser = new Parser(tableTop);
