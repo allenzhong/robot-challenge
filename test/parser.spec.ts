@@ -1,28 +1,49 @@
 import Parser from '../src/parser';
 import TableTop from '../src/models/table-top';
+import InvalidArgumentError from '../src/errors/invalid-command-error';
 jest.mock('../src/models/table-top');
 
 const TableTopMock = TableTop as jest.MockedClass<typeof TableTop>;
 describe('Parse', () => {
-  describe('parse', () => {
+  describe('parse commands', () => {
     let tableTop: TableTop;
     beforeEach(() => {
       tableTop = new TableTopMock();
       TableTopMock.mockClear();
     });
 
-    it('PLACE when position is valid', () => {
-      jest.spyOn(tableTop, 'isPositionValid').mockReturnValue(true);
-      const parser = new Parser(tableTop);
-      parser.parse('PLACE 0,0,NORTH');
-      expect(tableTop.placeRobot).toBeCalledWith(0, 0, 'NORTH');
-    });
+    describe('PLACE', () => {
+      it('when position is valid', () => {
+        jest.spyOn(tableTop, 'isPositionValid').mockReturnValue(true);
+        const parser = new Parser(tableTop);
+        parser.parse('PLACE 0,0,NORTH');
+        expect(tableTop.placeRobot).toBeCalledWith(0, 0, 'NORTH');
+      });
 
-    it('PLACE when position is invalid', () => {
-      jest.spyOn(tableTop, 'isPositionValid').mockReturnValue(false);
-      const parser = new Parser(tableTop);
-      parser.parse('PLACE 0,0,NORTH');
-      expect(tableTop.placeRobot).not.toBeCalled();
+      it('when position is invalid', () => {
+        jest.spyOn(tableTop, 'isPositionValid').mockReturnValue(false);
+        const parser = new Parser(tableTop);
+        parser.parse('PLACE 0,0,NORTH');
+        expect(tableTop.placeRobot).not.toBeCalled();
+      });
+
+      it('throw error when position args(not number) are invalid', () => {
+        jest.spyOn(tableTop, 'isPositionValid').mockReturnValue(true);
+        const parser = new Parser(tableTop);
+        expect(() => parser.parse('PLACE x,s,NORTH')).toThrowError(
+          'Place command or arguments invalid',
+        );
+        expect(tableTop.placeRobot).not.toBeCalled();
+      });
+
+      it('throw error when position args(orientation wrong) are invalid', () => {
+        jest.spyOn(tableTop, 'isPositionValid').mockReturnValue(true);
+        const parser = new Parser(tableTop);
+        expect(() => parser.parse('PLACE 0,1,ORTH')).toThrowError(
+          'Place command or arguments invalid',
+        );
+        expect(tableTop.placeRobot).not.toBeCalled();
+      });
     });
 
     it('MOVE', () => {
@@ -36,7 +57,7 @@ describe('Parse', () => {
       parser.parse('LEFT');
       expect(tableTop.turnRobotLeft).toBeCalled();
     });
-    
+
     it('RIGHT', () => {
       const parser = new Parser(tableTop);
       parser.parse('RIGHT');

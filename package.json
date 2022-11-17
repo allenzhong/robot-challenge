@@ -47,7 +47,6 @@
   },
   "dependencies": {
     "chalk": "^5.1.2",
-    "commander": "^9.4.1",
     "conf": "^10.2.0"
   }
 }

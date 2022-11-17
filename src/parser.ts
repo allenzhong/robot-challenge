@@ -1,3 +1,4 @@
+import InvalidArgumentError from './errors/invalid-command-error';
 import { Command } from './models/command';
 import { Orientation } from './models/robot';
 import TableTop from './models/table-top';
@@ -34,6 +35,11 @@ export default class Parser {
 
   private _placeRobot(args: string) {
     const [x, y, orientation] = args.split(',');
+
+    if (!this.validateArgs(x, y, orientation)) {
+      throw new InvalidArgumentError('Place command or arguments invalid');
+    }
+
     if (this._tableTop.isPositionValid(Number(x), Number(y))) {
       this._tableTop.placeRobot(
         Number(x),
@@ -41,6 +47,14 @@ export default class Parser {
         orientation as Orientation,
       );
     }
+  }
+
+  private validateArgs(x: string, y: string, orientation: string) {
+    return (
+      Number.isInteger(Number(x)) &&
+      Number.isInteger(Number(y)) &&
+      orientation in Orientation
+    );
   }
 
   private _moveRobot() {
