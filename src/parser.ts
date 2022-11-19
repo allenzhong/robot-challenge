@@ -1,71 +1,31 @@
-import InvalidArgumentError from './errors/invalid-command-error';
-import { Command } from './models/command';
-import { Orientation } from './models/robot';
+import Printer from './printer';
 import TableTop from './models/table-top';
+import CommandFactory from './infrastructure/command-factory';
+import Dispatcher from './infrastructure/dispatcher';
+import InvalidCommandError from './errors/invalid-command';
 
 export default class Parser {
+  private commandFactory: CommandFactory;
+  private dispatcher: Dispatcher;
   private _tableTop: TableTop;
+  private printer: Printer = new Printer(Parser.name);
 
   constructor(tableTop: TableTop) {
+    this.commandFactory = new CommandFactory();
+    this.dispatcher = new Dispatcher();
     this._tableTop = tableTop;
   }
 
   public parse(input: string) {
-    const [command, ...args] = input.split(' ');
-    switch (command) {
-      case Command.PLACE:
-        this._placeRobot(args[0]);
-        break;
-      case Command.MOVE:
-        this._moveRobot();
-        break;
-      case Command.LEFT:
-        this._turnRobotLeft();
-        break;
-      case Command.RIGHT:
-        this._turnRobotRight();
-        break;
-      case Command.REPORT:
-        console.log(this._tableTop.report());
-        break;
-      default:
-        console.log('Invalid command');
+    try {
+      const command = this.commandFactory.getCommand(this._tableTop, input);
+      this.dispatcher.dispatch(command, input);
+    } catch (e) {
+      if (e instanceof InvalidCommandError) {
+        this.printer.printError(`Invalid command: ${input}`);
+      } else {
+        this.printer.printError((e as Error).message);
+      }
     }
-  }
-
-  private _placeRobot(args: string) {
-    const [x, y, orientation] = args.split(',');
-
-    if (!this.validateArgs(x, y, orientation)) {
-      throw new InvalidArgumentError('Place command or arguments invalid');
-    }
-
-    if (this._tableTop.isPositionValid(Number(x), Number(y))) {
-      this._tableTop.placeRobot(
-        Number(x),
-        Number(y),
-        orientation as Orientation,
-      );
-    }
-  }
-
-  private validateArgs(x: string, y: string, orientation: string) {
-    return (
-      Number.isInteger(Number(x)) &&
-      Number.isInteger(Number(y)) &&
-      orientation in Orientation
-    );
-  }
-
-  private _moveRobot() {
-    this._tableTop.moveRobot();
-  }
-
-  private _turnRobotLeft() {
-    this._tableTop.turnRobotLeft();
-  }
-
-  private _turnRobotRight() {
-    this._tableTop.turnRobotRight();
   }
 }
