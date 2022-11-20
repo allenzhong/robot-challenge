@@ -10,13 +10,13 @@ export default class Printer {
   }
 
   public printError(message: string): void {
-    console.error(this.format(message));
+    console.error(this.formatError(message));
   }
 
   private format(message: string): string {
     return `[${this.serviceName}] ${message}`;
   }
-  
+
   private formatError(message: string): string {
     return `[Error] ${message}`;
   }
