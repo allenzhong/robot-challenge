@@ -3,7 +3,7 @@ import TableTop from '../../src/models/table-top';
 import Printer from '../../src/utils/printer';
 
 jest.mock('../../src/models/table-top');
-jest.mock('../../src/printer');
+jest.mock('../../src/utils/printer');
 
 const TableTopMock = TableTop as jest.MockedClass<typeof TableTop>;
 const PrinterMock = Printer as jest.MockedClass<typeof Printer>;
