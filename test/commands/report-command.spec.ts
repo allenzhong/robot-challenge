@@ -27,7 +27,7 @@ describe('ReportCommand', () => {
       jest.spyOn(reportCommand, 'printer', 'get').mockReturnValue(printer);
       reportCommand.execute();
       expect(tableTop.report).toHaveBeenCalled();
-      expect(printer.report).toHaveBeenCalledWith('1,2,NORTH');
+      expect(printer.printInfo).toHaveBeenCalledWith('1,2,NORTH');
     });
   });
 });

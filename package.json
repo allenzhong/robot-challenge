@@ -47,6 +47,6 @@
   },
   "dependencies": {
     "chalk": "^5.1.2",
-    "conf": "^10.2.0"
+    "colorette": "^2.0.19"
   }
 }

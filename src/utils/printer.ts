@@ -1,23 +1,34 @@
+import {green, blue, bold, red, bgRed } from 'colorette';
+
+const log = console.log;
 export default class Printer {
   constructor(private readonly serviceName: string) {}
 
   public report(message: string): void {
-    console.log(message);
+    log(green(message));
   }
 
   public print(message: string): void {
-    console.log(this.format(message));
+    log(this.format(message));
+  }
+
+  public printInfo(message: string): void {
+    log(this.formatInfo(message));
   }
 
   public printError(message: string): void {
-    console.error(this.formatError(message));
+    log(this.formatError(message));
   }
 
   private format(message: string): string {
     return `[${this.serviceName}] ${message}`;
   }
 
+  private formatInfo(message: string): string {
+    return blue(bold(`${message}`));
+  }
+
   private formatError(message: string): string {
-    return `[Error] ${message}`;
+    return `${bgRed('[Error]')} ${red(message)}`;
   }
 }

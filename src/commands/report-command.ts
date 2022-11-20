@@ -16,6 +16,6 @@ export class ReportCommand extends AbstractCommand {
   
   execute(): void {
     const report = this._tableTop.report();
-    this.printer.report(report);
+    this.printer.printInfo(report);
   }
 }

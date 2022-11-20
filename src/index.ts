@@ -1,9 +1,12 @@
 import * as readline from 'node:readline';
 import TableTop from './models/table-top';
 import Parser from './infrastructure/parser';
+import Printer from './utils/printer';
 
 function main() {
-  console.log('starting robot challenge');
+  const printer = new Printer('main');
+  printer.printInfo('Starting robot challenge, please enter commands:\n');
+
   const parser = new Parser(new TableTop());
 
   const rl = readline.createInterface({
@@ -16,7 +19,7 @@ function main() {
   });
 
   rl.on('close', () => {
-    console.log(`Stop Robot`);
+    printer.printInfo(`Robot stopped`);
   });
 }
 
