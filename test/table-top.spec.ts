@@ -1,4 +1,4 @@
-import { Orientation } from '../src/models/robot';
+import { Orientation } from '../src/models/orientation';
 import TableTop from '../src/models/table-top';
 
 describe('Table top', () => {

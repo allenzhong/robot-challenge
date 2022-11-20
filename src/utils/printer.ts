@@ -1,11 +1,11 @@
-import {green, blue, bold, red, bgRed } from 'colorette';
+import {blue, bold, red, bgRed } from 'colorette';
 
 const log = console.log;
 export default class Printer {
   constructor(private readonly serviceName: string) {}
 
-  public report(message: string): void {
-    log(green(message));
+  public printText(message: string): void {
+    log(message);
   }
 
   public print(message: string): void {

@@ -1,7 +1,8 @@
 import InvalidPositionError from '../errors/invalid-position';
 import BoardMap from '../utils/board-map';
+import { Orientation } from './orientation';
 import Position from './position';
-import Robot, { Orientation } from './robot';
+import Robot from './robot';
 
 export default class TableTop {
   private _robot: Robot | undefined;

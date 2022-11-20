@@ -6,6 +6,7 @@ import Printer from './utils/printer';
 function main() {
   const printer = new Printer('main');
   printer.printInfo('Starting robot challenge, please enter commands:\n');
+  printer.printInfo('Use Ctrl + C to exit\n');
 
   const parser = new Parser(new TableTop());
 

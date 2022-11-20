@@ -1,11 +1,7 @@
+import { Orientation } from './orientation';
 import Position from './position';
 
-export enum Orientation {
-  NORTH = 'NORTH',
-  EAST = 'EAST',
-  SOUTH = 'SOUTH',
-  WEST = 'WEST',
-}
+
 
 export default class Robot {
   private _position: Position;

@@ -1,11 +1,13 @@
-import { bgGreen, bold } from 'colorette';
+import { bgGreen, bgYellow, bold } from 'colorette';
 import Robot from '../models/robot';
+import Printer from './printer';
 
 export default class BoardMap {
   private map: string[][];
   private orientation = '';
   private gapChar = '-';
   private gap = 2;
+  private printer: Printer = new Printer('BoardMap');
 
   constructor(private readonly length: number = 5) {
     this.map = new Array(this.length)
@@ -23,12 +25,13 @@ export default class BoardMap {
   public showBoardMap(robot: Robot) {
     this.placeRobot(robot);
     const rows = this.buildRows();
-    console.log('\nBoard Map\n');
-    console.log(`Robot is facing ${this.orientation}\n`);
+    this.printer.printText(
+      `\nBoard Map - Robot is facing ${bgYellow(bold(this.orientation))}\n`,
+    );
     rows.forEach((row: string[]) => {
-      console.log(row.join(''));
+      this.printer.printText(row.join(''));
     });
-    console.log();
+    this.printer.printText('');
   }
 
   public buildRows() {

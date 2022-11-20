@@ -1,5 +1,5 @@
 import InvalidArgumentError from '../errors/invalid-arguments';
-import { Orientation } from '../models/robot';
+import { Orientation } from '../models/orientation';
 import { AbstractCommand } from './abstract-command';
 
 export class PlaceCommand extends AbstractCommand {

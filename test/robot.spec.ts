@@ -1,5 +1,6 @@
+import { Orientation } from '../src/models/orientation';
 import Position from '../src/models/position';
-import Robot, { Orientation } from '../src/models/robot';
+import Robot from '../src/models/robot';
 
 describe('Robot', () => {
   describe('constructor', () => {
