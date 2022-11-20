@@ -99,3 +99,25 @@ example
 REPORT
 Output: 0,1,NORTH
 ```
+
+### BOARD
+This will show the board map where the robot is.
+
+example
+ ```
+ BOARD
+
+  Board Map
+
+  Robot is facing NORTH
+
+  o--o--o--o--o
+  |  |  |  |  |
+  o--o--o--o--o
+  |  |  |  |  |
+  o--o--o--o--o
+  |  |  |  |  |
+  o--o--o--o--o
+  |  |  |  |  |
+  R--o--o--o--o
+```

@@ -7,6 +7,7 @@ import { MoveCommand } from '../commands/move-command';
 import { PlaceCommand } from '../commands/place-command';
 import { ReportCommand } from '../commands/report-command';
 import { RightCommand } from '../commands/right-command';
+import { BoardCommand } from '../commands/board-command';
 
 export type CommandFactoryFn = (
   tableTop: TableTop,
@@ -32,6 +33,7 @@ export default class CommandFactory {
       CommandName.REPORT,
       this.composeCommandFn(ReportCommand),
     );
+    this._commands.set(CommandName.BOARD, this.composeCommandFn(BoardCommand));
   }
 
   public getCommand(input: string): AbstractCommand {

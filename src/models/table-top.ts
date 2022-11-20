@@ -1,4 +1,5 @@
 import InvalidPositionError from '../errors/invalid-position';
+import BoardMap from '../utils/board-map';
 import Position from './position';
 import Robot, { Orientation } from './robot';
 
@@ -11,7 +12,7 @@ export default class TableTop {
     if (!this.isPositionValid(x, y)) {
       throw new InvalidPositionError('Robot placed on an invalid position.');
     }
-  
+
     this._robot = new Robot(new Position(x, y), orientation);
   }
 
@@ -50,5 +51,12 @@ export default class TableTop {
 
   public isPositionValid(x: number, y: number) {
     return x >= 0 && x < this._width && y >= 0 && y < this._height;
+  }
+
+  public showBoard() {
+    if (this._robot) {
+      const board = new BoardMap();
+      board.showBoardMap(this._robot);
+    }
   }
 }

@@ -4,4 +4,5 @@ export enum CommandName {
   LEFT = 'LEFT',
   RIGHT = 'RIGHT',
   REPORT = 'REPORT',
+  BOARD = 'BOARD',
 }
