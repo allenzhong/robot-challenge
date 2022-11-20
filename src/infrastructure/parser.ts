@@ -1,8 +1,8 @@
-import Printer from './printer';
-import TableTop from './models/table-top';
-import CommandFactory from './infrastructure/command-factory';
-import Dispatcher from './infrastructure/dispatcher';
-import InvalidCommandError from './errors/invalid-command';
+import Printer from '../utils/printer';
+import TableTop from '../models/table-top';
+import CommandFactory from './command-factory';
+import Dispatcher from './dispatcher';
+import InvalidCommandError from '../errors/invalid-command';
 
 export default class Parser {
   private commandFactory: CommandFactory;

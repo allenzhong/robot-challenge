@@ -1,5 +1,5 @@
 import TableTop from '../models/table-top';
-import Printer from '../printer';
+import Printer from '../utils/printer';
 import { AbstractCommand } from './abstract-command';
 
 export class ReportCommand extends AbstractCommand {

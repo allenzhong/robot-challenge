@@ -1,6 +1,6 @@
 import * as readline from 'node:readline';
 import TableTop from './models/table-top';
-import Parser from './parser';
+import Parser from './infrastructure/parser';
 
 function main() {
   console.log('starting robot challenge');

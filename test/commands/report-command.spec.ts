@@ -1,6 +1,6 @@
 import { ReportCommand } from '../../src/commands/report-command';
 import TableTop from '../../src/models/table-top';
-import Printer from '../../src/printer';
+import Printer from '../../src/utils/printer';
 
 jest.mock('../../src/models/table-top');
 jest.mock('../../src/printer');
