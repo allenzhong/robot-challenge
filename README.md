@@ -13,6 +13,19 @@ Install the npm packages
 npm install
 ```
 
+## Run tests
+
+```bash
+npm run test
+```
+
+## Run build
+This step build the artifact in `build` folder.
+
+```
+npm run build
+```
+
 ## Run the application
 
 Type the following command in console. You will see `starting robot challenge` at the end.
