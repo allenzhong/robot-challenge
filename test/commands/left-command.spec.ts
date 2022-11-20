@@ -7,10 +7,12 @@ const TableTopMock = TableTop as jest.MockedClass<typeof TableTop>;
 
 describe('LeftCommand', () => {
   let tableTop: TableTop;
+
   beforeEach(() => {
     tableTop = new TableTopMock();
     TableTopMock.mockClear();
   });
+  
   describe('execute', () => {
     it('should turn the robot left', () => {
       jest.spyOn(tableTop, 'turnRobotLeft');

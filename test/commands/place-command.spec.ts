@@ -7,10 +7,12 @@ const TableTopMock = TableTop as jest.MockedClass<typeof TableTop>;
 
 describe('PlaceCommand', () => {
   let tableTop: TableTop;
+
   beforeEach(() => {
     tableTop = new TableTopMock();
     TableTopMock.mockClear();
   });
+  
   describe('execute', () => {
     it('should place the robot when position is valid', () => {
       jest.spyOn(tableTop, 'isPositionValid').mockReturnValue(true);
