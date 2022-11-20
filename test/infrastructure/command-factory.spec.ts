@@ -9,37 +9,39 @@ import TableTop from '../../src/models/table-top';
 describe('CommandFactory', () => {
   let tableTop: TableTop;
   let commandFactory: CommandFactory;
+
   beforeEach(() => {
     tableTop = new TableTop();
-    commandFactory = new CommandFactory();
+    commandFactory = new CommandFactory(tableTop);
   });
+  
   it('should create a PlaceCommand', () => {
-    const command = commandFactory.getCommand(tableTop, 'PLACE 0,0,NORTH');
+    const command = commandFactory.getCommand('PLACE 0,0,NORTH');
     expect(command instanceof PlaceCommand).toBe(true);
   });
 
   it('should create a MoveCommand', () => {
-    const command = commandFactory.getCommand(tableTop, 'MOVE');
+    const command = commandFactory.getCommand('MOVE');
     expect(command instanceof MoveCommand).toBe(true);
   });
 
   it('should create a LeftCommand', () => {
-    const command = commandFactory.getCommand(tableTop, 'LEFT');
+    const command = commandFactory.getCommand('LEFT');
     expect(command instanceof LeftCommand).toBe(true);
   });
 
   it('should create a RightCommand', () => {
-    const command = commandFactory.getCommand(tableTop, 'RIGHT');
+    const command = commandFactory.getCommand('RIGHT');
     expect(command instanceof RightCommand).toBe(true);
   });
 
   it('should create a ReportCommand', () => {
-    const command = commandFactory.getCommand(tableTop, 'REPORT');
+    const command = commandFactory.getCommand('REPORT');
     expect(command instanceof ReportCommand).toBe(true);
   });
 
   it('should throw an error when command is invalid', () => {
-    expect(() => commandFactory.getCommand(tableTop, 'INVALID')).toThrowError(
+    expect(() => commandFactory.getCommand('INVALID')).toThrowError(
       'Invalid command',
     );
   });

@@ -19,7 +19,7 @@ export default class CommandFactory {
     CommandFactoryFn
   >();
 
-  constructor() {
+  constructor(private _tableTop: TableTop) {
     this.initMapping();
   }
 
@@ -34,11 +34,11 @@ export default class CommandFactory {
     );
   }
 
-  public getCommand(tableTop: TableTop, input: string): AbstractCommand {
+  public getCommand(input: string): AbstractCommand {
     const [command] = input.split(' ');
     const commandFn = this._commands.get(command);
     if (commandFn) {
-      return commandFn(tableTop, input);
+      return commandFn(this._tableTop, input);
     }
     throw new InvalidCommandError('Invalid command');
   }
@@ -46,7 +46,8 @@ export default class CommandFactory {
   private composeCommandFn<AbstractCommand>(commandType: {
     new (tableTop: TableTop, input: string): AbstractCommand;
   }) {
-    const fn = (tableTop: TableTop, input: string) => new commandType(tableTop, input);
+    const fn = (tableTop: TableTop, input: string) =>
+      new commandType(tableTop, input);
     return fn;
   }
 }
