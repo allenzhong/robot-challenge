@@ -35,7 +35,7 @@ npm run start
 starting robot challenge
 ```
 
-Then you can type commands to control robot. 
+Then you can type the following commands line by line to control robot. 
 
 ```plain
 PLACE 0,0,NORTH
