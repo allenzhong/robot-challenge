@@ -11,7 +11,7 @@ export class PlaceCommand extends AbstractCommand {
     const [x, y, orientation] = args[0].split(',');
 
     if (!this.validateArgs(x, y, orientation)) {
-      throw new InvalidArgumentError('Place command or arguments invalid');
+      throw new InvalidArgumentError("Place command's arguments invalid");
     }
 
     if (this._tableTop.isPositionValid(Number(x), Number(y))) {

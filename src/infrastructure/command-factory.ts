@@ -43,10 +43,10 @@ export default class CommandFactory {
     throw new InvalidCommandError('Invalid command');
   }
 
-  private composeCommandFn<AbstractCommand>(c: {
+  private composeCommandFn<AbstractCommand>(commandType: {
     new (tableTop: TableTop, input: string): AbstractCommand;
   }) {
-    const fn = (tableTop: TableTop, input: string) => new c(tableTop, input);
+    const fn = (tableTop: TableTop, input: string) => new commandType(tableTop, input);
     return fn;
   }
 }
